@@ -1,0 +1,46 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5433/book_social_network
+    username: chis
+    password: chis
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update  # Hibernate will automatically update the database schema to match the entity classes. Only for dev
+    show-sql: false
+    properties:
+      hibernate:
+        format_sql: true  # Hibernate will print the SQL statements in a more human-readable format
+    database: postgresql  # This helps Hibernate understand how to interact with the database correctly.
+    database-platform: org.hibernate.dialect.PostgreSQLDialect  # The dialect defines how Hibernate should communicate with the database, including SQL syntax and data types.
+
+  mail:
+    host: localhost
+    port: 1025
+    username: chis
+    password: chis
+    properties:
+      mail:
+        smtp:
+          trust: "*"
+        auth: true
+        starttls:
+          enable: true
+        connectiontimeout: 5000
+        timeout: 3000
+        writetimeout: 5000
+
+application:
+  security:
+    jwt:
+      secret-key: 291d7b170fc96c6d87eed5d2fdf437eb20d508cc854cd34405818281c754bdab
+      expiration: 86400000
+  mailing:
+    frontend:
+      activation-url: http://localhost:4200/activate-account
+  file:
+    uploads:
+      photos-output-path: ./uploads
+
+server:
+  port: 8088
