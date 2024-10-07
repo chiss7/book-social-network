@@ -24,6 +24,16 @@ services:
     networks:
       - bsn_network
 
+  bsn-api: # Backend container
+    container_name: bsn-api
+    image: bsn/bsn:0.0.1
+    ports:
+      - 8088:8088
+    networks:
+      - bsn_network
+    depends_on:
+      - postges # When postgres is up and running then we start our backend container
+
 networks:
   bsn_network:
     driver: bridge
