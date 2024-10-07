@@ -26,13 +26,23 @@ services:
 
   bsn-api: # Backend container
     container_name: bsn-api
-    image: bsn/bsn:0.0.1
+    image: bsn/bsn:0.0.3
     ports:
       - 8088:8088
     networks:
       - bsn_network
     depends_on:
       - postges # When postgres is up and running then we start our backend container
+
+  bsn-ui: # Frontend container
+    container_name: bsn-ui
+    image: bsn/bsn-ui:0.0.1
+    ports:
+      - 8080:80
+    networks:
+      - bsn_network
+    depends_on:
+      - bsn-api # When bsn-api is up and running then we start our frontend container
 
 networks:
   bsn_network:

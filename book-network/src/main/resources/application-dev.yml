@@ -15,20 +15,20 @@ spring:
     database-platform: org.hibernate.dialect.PostgreSQLDialect  # The dialect defines how Hibernate should communicate with the database, including SQL syntax and data types.
 
   mail:
-    host: localhost
-    port: 1025
-    username: chis
-    password: chis
+    host: smtp.gmail.com # smtp.gmail.com instead of localhost for production
+    port: 465 # 465 instead of 1025
+    username: some_email_user@gmail.com
+    password: some_generated_password # Generated password in Gmail App passwords
     properties:
       mail:
         smtp:
-          trust: "*"
-        auth: true
+          auth: true
+          ssl:
+            enable: true
+            trust: "*"
         starttls:
           enable: true
-        connectiontimeout: 5000
-        timeout: 3000
-        writetimeout: 5000
+    protocol: smtp
 
 application:
   security:

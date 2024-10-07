@@ -14,7 +14,7 @@ RUN mvn clean package -DskipTests
 FROM amazoncorretto:17
 # The profile by default will be dev and version will be 0.0.1 (if we don't pass the arguments)
 ARG PROFILE=dev
-ARG APP_VERSION=0.0.1-SNAPSHOT
+ARG APP_VERSION=0.0.3-SNAPSHOT
 
 WORKDIR /app
 # Copy the .jar previusly generated in Stage 1 to my current location
@@ -29,4 +29,6 @@ ENV JAR_VERSION=${APP_VERSION}
 CMD java -jar -Dspring.profiles.active=${ACTIVE_PROFILE} -Dspring.datasource.url=${DB_URL} book-network-${JAR_VERSION}.jar
 
 ## Inside of our backend folder, run command:
-# docker build -t bsn/bsn:0.0.1 -f ../docker/backend/Dockerfile .
+# docker build -t bsn/bsn:0.0.3 -f ../docker/backend/Dockerfile .
+# or (in order to avoid update the APP_VERSION in the Dockerfile)
+# docker build --build-arg="APP_VERSION=0.0.3-SNAPSHOT" -t bsn/bsn:0.0.3 -f ../docker/backend/Dockerfile .
